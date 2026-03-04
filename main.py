@@ -54,7 +54,7 @@ def list_products(
     }
     
 # Combining Multiple Filters
-@app.get("/fiters/")
+@app.get("/filters/")
 def advance_search(
     q: str,
     page: int = 1,
