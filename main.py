@@ -36,6 +36,7 @@ def search(keyword: str, page: int = 1, page_size: int = 10):
         "page_size": page_size
     }
     
+# Real World Prodict Listing Analogy
 @app.get("/products/")
 def list_products(
     category: str,
@@ -50,4 +51,27 @@ def list_products(
         "min_price": min_price,
         "max_price": max_price,
         "in_stock": in_stock,
+    }
+    
+# Combining Multiple Filters
+@app.get("/fiters/")
+def advance_search(
+    q: str,
+    page: int = 1,
+    page_size: int = 5,
+    sort_by: str = "relevance",
+    include_images: bool = True  
+):
+    """
+    - q: required search term
+    - page, page_size: pagination controls
+    - sort_by: sort field ("relevance", "date", etc.)
+    - include_images: whether to include image URLs in results
+    """
+    return{
+        "q": q,
+        "page": page,
+        "page_size": page_size,
+        "sort_by": sort_by,
+        "include_images": include_images,
     }
