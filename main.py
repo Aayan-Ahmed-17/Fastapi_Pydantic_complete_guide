@@ -35,3 +35,19 @@ def search(keyword: str, page: int = 1, page_size: int = 10):
         "page": page,
         "page_size": page_size
     }
+    
+@app.get("/products/")
+def list_products(
+    category: str,
+    sort: str = "name",
+    min_price: float = 0.0,
+    max_price: float = 1000.0,
+    in_stock: bool = True
+):
+    return {
+        "category": category,
+        "sort": sort,
+        "min_price": min_price,
+        "max_price": max_price,
+        "in_stock": in_stock,
+    }
