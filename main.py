@@ -22,3 +22,16 @@ def read_item(item_id: int):
 def read_user_post(user_id: int, post_id: int):
     return {"user_id": user_id, "post_id": post_id}
 
+# query param get route dn
+@app.get("/search/")
+def search(keyword: str, page: int = 1, page_size: int = 10):
+    """
+    - keyword: required string to search for
+    - page: optional page number, defaults to 1
+    - page_size: optional results per page, defaults to 10
+    """    
+    return{
+        "keyword": keyword,
+        "page": page,
+        "page_size": page_size
+    }
