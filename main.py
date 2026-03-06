@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from models import UserRegistration
 
 app = FastAPI()
 
@@ -74,4 +75,14 @@ def advance_search(
         "page_size": page_size,
         "sort_by": sort_by,
         "include_images": include_images,
+    }
+    
+"""POST ROUTES"""
+
+@app.post("/register")
+async def register_user(user: UserRegistration):
+    return{
+        "message": "User registered successfully",
+        "status_code": 201,
+        "user": user.model_dump(),
     }
