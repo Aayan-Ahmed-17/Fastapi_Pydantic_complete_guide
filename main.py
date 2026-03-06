@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models import UserRegistration
+from models import UserRegistration, Item
 
 app = FastAPI()
 
@@ -85,4 +85,18 @@ async def register_user(user: UserRegistration):
         "message": "User registered successfully",
         "status_code": 201,
         "user": user.model_dump(),
+    }
+
+# Multiple Models in One Request
+@app.post("/purchase/")
+async def create_purchase(user: UserRegistration, item: Item):
+    """
+    Process a purchase with both user and item data
+    """
+    total_cost = item.price * item.quantity
+    return {
+        "user": user,
+        "item": item,
+        "total_cost": total_cost,
+        "message": f"{user.username} is purchasing {item.quantity}x {item.name}"
     }
